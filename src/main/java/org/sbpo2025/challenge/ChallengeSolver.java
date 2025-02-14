@@ -134,9 +134,7 @@ public class ChallengeSolver {
                 }
                 
                 for (int i = 0; i < aisles.size(); i++) {
-                    for (Map.Entry<Integer, Integer> entry : aisles.get(i).entrySet()) {
-                        objetivo.addTerm(-mid*entry.getValue(),aisvar[i]);
-                    }
+                    objetivo.addTerm(-mid,aisvar[i]);
                 }
 
                 
@@ -173,9 +171,7 @@ public class ChallengeSolver {
             }
             
             for (int i = 0; i < aisles.size(); i++) {
-                for (Map.Entry<Integer, Integer> entry : aisles.get(i).entrySet()) {
-                    objetivo.addTerm(-mid*entry.getValue(),aisvar[i]);
-                }
+                objetivo.addTerm(-mid,aisvar[i]);
             }
     
             IloObjective objective = cplex.addMaximize(objetivo);
