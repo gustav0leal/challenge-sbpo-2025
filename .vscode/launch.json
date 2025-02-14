@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Challenge",
+            "request": "launch",
+            "mainClass": "org.sbpo2025.challenge.Challenge",
+            "projectName": "ChallengeSBPO2025",
+            "args": ["/home/dragon/sbpo/challenge-sbpo-2025/datasets/a/instance_0014.txt",
+                "/home/dragon/sbpo/challenge-sbpo-2025/datasets/out_a_heuristica/instance_0014.txt"],
+        }
+    ]
+}
