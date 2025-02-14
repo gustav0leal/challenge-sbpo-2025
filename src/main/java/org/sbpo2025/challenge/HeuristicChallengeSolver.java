@@ -35,13 +35,17 @@ public class HeuristicChallengeSolver extends ChallengeSolver {
         Set<Integer> bestAisles = new TreeSet<>();
 
         for(int iteration = 0 ; iteration < 100 ; iteration++){
-            var takedOrders = new TreeSet<Integer>();
-
             if(stopWatch.getDuration().getSeconds() > MAX_RUNTIME){
                 break;
             }
 
+            var takedOrders = new TreeSet<Integer>();
+
             for(var orderNumber: ordersIndexes){
+                if(stopWatch.getDuration().getSeconds() > MAX_RUNTIME){
+                    break;
+                }
+                
                 takedOrders.add(orderNumber);
                 
                 var ailes = bestAislesToOrders(takedOrders);
