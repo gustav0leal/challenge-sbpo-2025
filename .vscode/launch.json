@@ -17,8 +17,9 @@
             "request": "launch",
             "mainClass": "org.sbpo2025.challenge.Challenge",
             "projectName": "ChallengeSBPO2025",
-            "args": ["/home/dragon/sbpo/challenge-sbpo-2025/datasets/a/instance_0014.txt",
-                "/home/dragon/sbpo/challenge-sbpo-2025/datasets/out_a_heuristica/instance_0014.txt"],
+            "args": ["/home/dragon/sbpo/challenge-sbpo-2025/datasets/a/instance_0002.txt",
+                "/home/dragon/sbpo/challenge-sbpo-2025/datasets/out_a_heuristica/instance_0002.txt"],
+            "vmArgs": "-Djava.library.path=/opt/ibm/ILOG/CPLEX_Studio2212/opl/bin/x86-64_linux"
         }
     ]
 }
