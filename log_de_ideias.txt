@@ -1,0 +1,10 @@
+1. Esse algoritmo usa o MIP na busca binaria e no final, rodando um tempo maximo fixo pra cara iteração da busca binaria e outro no final. (solução atual)
+
+2. algoritmo usa o LP na busca binaria e o MIP no final, rodando um tempo maximo fixo pra cara iteração da busca binaria e outro no final.
+pior nos casos 3,8 e 10 , igual no resto.
+
+3. Esse algoritmo roda MIP direto com uma função objetivo não quadradica. Não consegui fazer rodar.
+
+4. rodando como o 1, mas forçando tabu search com parametros do strategy no cplex. Pior no 5,8, 10 e 11, igual no resto. As diferenças no 5 e no 11 foram bem pequenas.
+
+5.

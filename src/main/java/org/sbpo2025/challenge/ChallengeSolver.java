@@ -55,29 +55,7 @@ public class ChallengeSolver {
             }
         }
 
-        // codigo da força bruta
-        // ChallengeSolution mysol = new ChallengeSolution(new HashSet<>(),new HashSet<>());
-        // // mysol.orders = new Set<>();
-        // // mysol.aisles = new Set<>();
-        // while(!isSolutionFeasible(mysol))
-        // {
-        //     ChallengeSolution best = add_aisles(mysol,0);
-        //     for (int i = 1; i < orders.size(); i++) {
-        //         if(isSolutionFeasible(best)){
-        //             System.out.println("OPA");
-        //             break;
-        //         }
-        //         ChallengeSolution nat = add_aisles(mysol,1);
-        //         if(calc_item(nat) > calc_item(best) && calc_item(nat) < waveSizeUB){
-        //             best = new ChallengeSolution(nat.orders(),nat.aisles());
-        //         }
-        //     }
-        //     if(best.equals(mysol)){
-        //         System.out.println(isSolutionFeasible(mysol));
-        //         break;
-        //     }
-        //     mysol = new ChallengeSolution(best.orders(),best.aisles());
-        // }
+        
         System.out.println(all);
         double l = 1e-8, r = all;
         Set<Integer> orderset = new HashSet<>();
@@ -85,7 +63,15 @@ public class ChallengeSolver {
         try {
             IloCplex cplex = new IloCplex();
             cplex.setParam(IloCplex.DoubleParam.TiLim, RUNTIME/BIN_ITER);
-            IloIntVar [] ordvar = cplex.intVarArray(orders.size(),0,1);
+            // cplex.setParam(IloCplex.IntParam.MIP.Strategy.HeuristicFreq, 20);
+            // cplex.setParam(IloCplex.IntParam.MIP.Strategy.RINSHeur, 10);
+            // cplex.setParam(IloCplex.BooleanParam.MIP.Strategy.LBHeur, true);
+            // cplex.setParam(IloCplex.IntParam.MIP.Strategy.NodeSelect, 1);
+            // cplex.setParam(IloCplex.IntParam.MIP.Strategy.VariableSelect, 3);
+            // cplex.setParam(IloCplex.IntParam.MIP.Strategy.Dive, 3);
+            // cplex.setParam(IloCplex.IntParam.MIP.Limits.StrongIt, 10); 
+            // cplex.setParam(IloCplex.IntParam.MIP.Strategy.Branch, 3);
+            IloNumVar [] ordvar = cplex.numVarArray(orders.size(),0,1, IloNumVarType.Bool);
 
             
             IloLinearNumExpr sumorders = cplex.linearNumExpr();
@@ -98,7 +84,7 @@ public class ChallengeSolver {
             }
             IloLinearNumExpr sumaisles = cplex.linearNumExpr();
 
-            IloIntVar [] aisvar = cplex.intVarArray(aisles.size(),0,1);
+            IloNumVar [] aisvar = cplex.numVarArray(aisles.size(),0,1, IloNumVarType.Bool);
             for (int i = 0; i < aisles.size(); i++) {
                 sumaisles.addTerm(1,aisvar[i]);
             }
@@ -142,12 +128,7 @@ public class ChallengeSolver {
 
                 
 
-                // Resolver o modelo
-                // System.out.println(cplex.solve());
                 if (cplex.solve()) {
-                    // System.out.println("Solução ótima encontrada:");
-                    // System.out.println("x = " + (int) cplex.getValue(x));
-                    // System.out.println("y = " + (int) cplex.getValue(y));
                     System.out.println("Valor ótimo Z = " + cplex.getObjValue());
                     if(cplex.getObjValue() >= 0)
                         l = mid;
@@ -200,59 +181,6 @@ public class ChallengeSolver {
         }
         // Fechar o solver
         return null;
-    }
-
-    public ChallengeSolution add_aisles(ChallengeSolution mysol, Integer id) {
-        Set<Integer> selectedOrders = mysol.orders();
-        if(selectedOrders.contains(id))
-            return mysol;
-        Set<Integer> visitedAisles = mysol.aisles();
-        selectedOrders.add(id);
-        int[] totalUnitsPicked = new int[nItems];
-        int[] totalUnitsAvailable = new int[nItems];
-
-        // Calculate total units picked
-        for (int order : selectedOrders) {
-            for (Map.Entry<Integer, Integer> entry : orders.get(order).entrySet()) {
-                totalUnitsPicked[entry.getKey()] += entry.getValue();
-            }
-        }
-
-        // Calculate total units available
-        for (int aisle : visitedAisles) {
-            for (Map.Entry<Integer, Integer> entry : aisles.get(aisle).entrySet()) {
-                totalUnitsAvailable[entry.getKey()] += entry.getValue();
-            }
-        }
-        for (int i = 0; i < aisles.size(); i++) {
-            if(visitedAisles.contains(i))
-                continue;
-            boolean mark = false;
-            for (Map.Entry<Integer, Integer> entry : aisles.get(i).entrySet()) {
-                if(totalUnitsAvailable[entry.getKey()] < totalUnitsPicked[entry.getKey()])
-                    mark = true;
-            }
-            if(!mark)
-                continue;
-            visitedAisles.add(i);
-            for (Map.Entry<Integer, Integer> entry : aisles.get(i).entrySet()) {
-                totalUnitsAvailable[entry.getKey()] += entry.getValue();
-            }
-        }
-        return new ChallengeSolution(selectedOrders,visitedAisles);
-    }
-
-    public Integer calc_item(ChallengeSolution at)
-    {
-        Set<Integer> selectedOrders = at.orders();
-        int totalUnits = 0;
-        // Calculate total units picked
-        for (int order : selectedOrders) {
-            for (Map.Entry<Integer, Integer> entry : orders.get(order).entrySet()) {
-                totalUnits += entry.getValue();
-            }
-        }
-        return totalUnits;
     }
 
     /*
