@@ -9,14 +9,17 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import ilog.concert.*;
 import ilog.cplex.*;
 
 public class ChallengeSolver {
     private final long MAX_RUNTIME = 600000; // milliseconds; 10 minutes
-    private final long RUNTIME = 400; // seconds; 10 minutes
-    private final long BIN_ITER = 25; 
+    private final long RUNTIME = 550; // seconds; 10 minutes
+    private final long BIN_ITER = 5; 
 
     protected List<Map<Integer, Integer>> orders;
     protected List<Map<Integer, Integer>> aisles;
@@ -57,12 +60,14 @@ public class ChallengeSolver {
 
         
         System.out.println(all);
-        double l = 1e-8, r = all;
+        double l = 1e-8;
+        double epsilon = 1e-6;
+        boolean mark = false;
         Set<Integer> orderset = new HashSet<>();
         Set<Integer> aisleset = new HashSet<>();
         try {
             IloCplex cplex = new IloCplex();
-            cplex.setParam(IloCplex.DoubleParam.TiLim, RUNTIME/BIN_ITER);
+            // cplex.setParam(IloCplex.DoubleParam.TiLim, RUNTIME/BIN_ITER);
             // cplex.setParam(IloCplex.IntParam.MIP.Strategy.HeuristicFreq, 20);
             // cplex.setParam(IloCplex.IntParam.MIP.Strategy.RINSHeur, 10);
             // cplex.setParam(IloCplex.BooleanParam.MIP.Strategy.LBHeur, true);
@@ -106,11 +111,23 @@ public class ChallengeSolver {
                 }
                 cplex.addLe(ordersum,aislesum);
             }
+            double startTime = cplex.getCplexTime();
+            cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.02);
+            // cplex.setParam(IloCplex.DoubleParam.WorkMem, 14000); // limitar uso de memoria pra 14 GB
+            // // Descobrir o número de núcleos da CPU
+            // int totalCores = Runtime.getRuntime().availableProcessors();
+            // int maxThreads = (totalCores*8+9)/10; // 80% dos núcleos
+            // // Limitar o número de threads do CPLEX
+            // cplex.setParam(IloCplex.IntParam.Threads, maxThreads);
             for(int c = 0; c < BIN_ITER; c++)
             {
-                    
-                double mid = (l+r)/2.0;
-                System.out.println("\n -------Execução " + c+" l "+l+" r "+r+" ------\n");
+                if(getRemainingTime(stopWatch) < 101)
+                    break;
+                if(c != 0)
+                    cplex.setParam(IloCplex.IntParam.RootAlg, IloCplex.Algorithm.Dual);
+                cplex.setParam(IloCplex.DoubleParam.TiLim, (getRemainingTime(stopWatch)-100));
+                // double mid = l;
+                System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+getRemainingTime(stopWatch)+" ------\n");
                     
                 IloLinearNumExpr objetivo = cplex.linearNumExpr();
                 for (int i = 0; i < orders.size(); i++) {
@@ -120,7 +137,7 @@ public class ChallengeSolver {
                 }
                 
                 for (int i = 0; i < aisles.size(); i++) {
-                    objetivo.addTerm(-mid,aisvar[i]);
+                    objetivo.addTerm(-l,aisvar[i]);
                 }
 
                 
@@ -129,53 +146,90 @@ public class ChallengeSolver {
                 
 
                 if (cplex.solve()) {
-                    System.out.println("Valor ótimo Z = " + cplex.getObjValue());
-                    if(cplex.getObjValue() >= 0)
-                        l = mid;
-                    else
-                        r = mid;
+                    System.out.println("Valor ótimo = " + cplex.getObjValue());
+                    int tot = 0;
+                    for (int i = 0; i < aisles.size(); i++) {
+                        if(cplex.getValue(aisvar[i]) > 0.5)
+                            tot = tot+1;
+                    }
+                    l = l + cplex.getObjValue()/tot;
+                    if(cplex.getStatus() == IloCplex.Status.Optimal && Math.abs(cplex.getObjValue()) < epsilon){
+                        mark = true;
+                        break;
+                    }
                     cplex.remove(objective);
                 } else {
                     cplex.end();
                     System.out.println("Não foi encontrada solução viável.");
                     return null;
                 }
-            }
-        
 
-            double mid = (l+r)/2.0;
-            IloLinearNumExpr objetivo = cplex.linearNumExpr();
-            for (int i = 0; i < orders.size(); i++) {
-                for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
-                    objetivo.addTerm(entry.getValue(),ordvar[i]);
-                }
+                
             }
-            
-            for (int i = 0; i < aisles.size(); i++) {
-                objetivo.addTerm(-mid,aisvar[i]);
-            }
-    
-            IloObjective objective = cplex.addMaximize(objetivo);
-
-            cplex.setParam(IloCplex.DoubleParam.TiLim, 100);
-            if (cplex.solve()) {
-                orderset.clear();
-                aisleset.clear();
+            if(!mark)
+            {
+                cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.0);
+                
+                // double mid = l;
+                System.out.println("\n --- l "+l+" Tempo Disponivel "+getRemainingTime(stopWatch)+" ------\n");
+                    
+                IloLinearNumExpr objetivo = cplex.linearNumExpr();
                 for (int i = 0; i < orders.size(); i++) {
-                    if(cplex.getValue(ordvar[i]) > 0.5)
-                        orderset.add(i);
+                    for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
+                        objetivo.addTerm(entry.getValue(),ordvar[i]);
+                    }
                 }
+                
                 for (int i = 0; i < aisles.size(); i++) {
-                    if(cplex.getValue(aisvar[i]) > + 0.5)
-                        aisleset.add(i);
+                    objetivo.addTerm(-l,aisvar[i]);
                 }
-                cplex.end();
-                return new ChallengeSolution(orderset,aisleset);
-            } else {
-                System.out.println("Não foi encontrada solução viável.");
-                cplex.end();
-                return null;
+
+                
+                IloObjective objective = cplex.addMaximize(objetivo);
+
+                cplex.setParam(IloCplex.DoubleParam.TiLim, (getRemainingTime(stopWatch)-30));
+                cplex.solve();
             }
+
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt", true))) {
+                writer.write("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus() +" ------\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // double mid = (l+r)/2;
+            // IloLinearNumExpr objetivo = cplex.linearNumExpr();
+            // for (int i = 0; i < orders.size(); i++) {
+            //     for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
+            //         objetivo.addTerm(entry.getValue(),ordvar[i]);
+            //     }
+            // }
+            
+            // for (int i = 0; i < aisles.size(); i++) {
+            //     objetivo.addTerm(-l,aisvar[i]);
+            // }
+    
+            // IloObjective objective = cplex.addMaximize(objetivo);
+
+            // cplex.setParam(IloCplex.DoubleParam.TiLim, 100);
+            // if (cplex.solve()) {
+            orderset.clear();
+            aisleset.clear();
+            for (int i = 0; i < orders.size(); i++) {
+                if(cplex.getValue(ordvar[i]) > 0.5)
+                    orderset.add(i);
+            }
+            for (int i = 0; i < aisles.size(); i++) {
+                if(cplex.getValue(aisvar[i]) > + 0.5)
+                    aisleset.add(i);
+            }
+            cplex.end();
+            return new ChallengeSolution(orderset,aisleset);
+            // } else {
+            //     System.out.println("Não foi encontrada solução viável.");
+            //     cplex.end();
+            //     return null;
+            // }
         } catch (IloException e) {
             e.printStackTrace();
         }

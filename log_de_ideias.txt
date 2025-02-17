@@ -7,4 +7,4 @@ pior nos casos 3,8 e 10 , igual no resto.
 
 4. rodando como o 1, mas forçando tabu search com parametros do strategy no cplex. Pior no 5,8, 10 e 11, igual no resto. As diferenças no 5 e no 11 foram bem pequenas.
 
-5.
+5. metodo do subgradiente proposto aqui https://www.ens-lyon.fr/DI/wp-content/uploads/2012/01/LagrangianRelax.pdf
