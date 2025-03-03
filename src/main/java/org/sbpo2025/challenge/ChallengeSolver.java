@@ -65,6 +65,7 @@ public class ChallengeSolver {
         boolean mark = false;
         Set<Integer> orderset = new HashSet<>();
         Set<Integer> aisleset = new HashSet<>();
+        IloObjective objective = null;
         try {
             IloCplex cplex = new IloCplex();
             // cplex.setParam(IloCplex.DoubleParam.TiLim, RUNTIME/BIN_ITER);
@@ -121,10 +122,12 @@ public class ChallengeSolver {
             // cplex.setParam(IloCplex.IntParam.Threads, maxThreads);
             for(int c = 0; c < BIN_ITER; c++)
             {
-                if(getRemainingTime(stopWatch) < 101)
+                if(getRemainingTime(stopWatch) <= 100)
                     break;
-                if(c != 0)
+                if(c != 0){
+                    cplex.remove(objective);
                     cplex.setParam(IloCplex.IntParam.RootAlg, IloCplex.Algorithm.Dual);
+                }
                 cplex.setParam(IloCplex.DoubleParam.TiLim, (getRemainingTime(stopWatch)-100)/(BIN_ITER-c));
                 // double mid = l;
                 System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-100)/(BIN_ITER-c)+" ------\n");
@@ -141,7 +144,7 @@ public class ChallengeSolver {
                 }
 
                 
-                IloObjective objective = cplex.addMaximize(objetivo);
+                objective = cplex.addMaximize(objetivo);
 
                 
 
@@ -157,7 +160,6 @@ public class ChallengeSolver {
                         mark = true;
                         break;
                     }
-                    cplex.remove(objective);
                 } else {
                     cplex.end();
                     System.out.println("Não foi encontrada solução viável.");
@@ -166,8 +168,10 @@ public class ChallengeSolver {
 
                 
             }
-            if(!mark)
+            if(!mark && getRemainingTime(stopWatch) > 100)
             {
+                
+                cplex.remove(objective);
                 cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.0);
                 
                 // double mid = l;
@@ -185,7 +189,7 @@ public class ChallengeSolver {
                 }
 
                 
-                IloObjective objective = cplex.addMaximize(objetivo);
+                objective = cplex.addMaximize(objetivo);
 
                 cplex.setParam(IloCplex.DoubleParam.TiLim, (getRemainingTime(stopWatch)-30));
                 cplex.solve();

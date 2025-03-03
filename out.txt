@@ -27,10 +27,10 @@ Is solution feasible: True
 Objective function value: 4.416666666666667
 Executando checker.py com 'datasets/a//instance_0010.txt'
 Is solution feasible: True
-Objective function value: 16.92233009708738
+Objective function value: 16.71153846153846
 Executando checker.py com 'datasets/a//instance_0011.txt'
 Is solution feasible: True
-Objective function value: 16.0
+Objective function value: 16.85
 Executando checker.py com 'datasets/a//instance_0012.txt'
 Is solution feasible: True
 Objective function value: 11.25

@@ -50,3 +50,129 @@
  -------Resultado: l 16.761904761904763 diff -4.263256414560601E-14 GAP 1.8201232161253323E11 Otima? Feasible ------
 
  -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 691.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 117.38461538461539 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 16.85 diff -2.1316282072803006E-14 GAP 4.8058447074834114E10 Otima? Feasible ------
+
+ -------Resultado: l 4.416666666666667 diff -3.552713678800501E-15 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 117.2 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 149.33333333333334 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 3.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 11.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 181.63636363636365 diff -2.2737367544323206E-13 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 392.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 202.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 16.711538461538467 diff 2.842170943040401E-14 GAP 2.436795802103721E12 Otima? Feasible ------
+
+ -------Resultado: l 36.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 85.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 16.902912621359228 diff -9.379164112033322E-13 GAP 2.3032976375761094E12 Otima? Feasible ------
+
+ -------Resultado: l 53.52928922933315 diff -1029.290809191995 GAP 0.4095583805690662 Otima? Feasible ------
+
+ -------Resultado: l 16.941176470588232 diff 15.57692307692247 GAP 12.709550581807964 Otima? Feasible ------
+
+ -------Resultado: l 16.902912621359217 diff -2.984279490192421E-13 GAP 2.492094897802275E12 Otima? Feasible ------
+
+ -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 601.5 diff 209.79999999999995 GAP 0.02235243213200609 Otima? Optimal ------
+
+ -------Resultado: l 117.38461538461539 diff 269.4999999999999 GAP 0.03480459626224057 Otima? Optimal ------
+
+ -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 4.416666666666667 diff 1.571428571428573 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 117.2 diff 72.11111111111114 GAP 0.03987081206973219 Otima? Optimal ------
+
+ -------Resultado: l 123.125 diff 180.047619047619 GAP 0.03955921321954117 Otima? Optimal ------
+
+ -------Resultado: l 3.5 diff 0.5 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 11.25 diff 9.727272727272727 GAP 0.03699376947002463 Otima? Optimal ------
+
+ -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 178.0 diff 498.375 GAP 0.005286921610646676 Otima? Optimal ------
+
+ -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 392.25 diff 128.33333333333326 GAP 0.03962509981922737 Otima? Optimal ------
+
+ -------Resultado: l 178.0 diff 55.5 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 16.86407766990291 diff 0.1372549019605458 GAP 1532.3929157539303 Otima? Feasible ------
+
+ -------Resultado: l 36.5 diff 9.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 85.0 diff 44.33333333333334 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 691.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 117.38461538461539 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 16.85 diff 2.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 4.416666666666667 diff -3.552713678800501E-15 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 117.2 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 149.33333333333334 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 3.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 11.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 181.63636363636363 diff -2.2737367544323206E-13 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 392.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 202.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 16.851485148514854 diff 28.285714285715216 GAP 7.867602950421964 Otima? Feasible ------
+
+ -------Resultado: l 36.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+
+ -------Resultado: l 85.0 diff 0.0 GAP 0.0 Otima? Optimal ------
