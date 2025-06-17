@@ -1,178 +1,499 @@
+Running instance_0027.txt
 
- -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 108.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 1siterations6 order size 1841 aisle size 165 ------
+Running instance_0003.txt
 
- -------Resultado: l 691.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations3 order size 82 aisle size 124 ------
+Running instance_0033.txt
 
- -------Resultado: l 117.38461538461539 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 42.02813852813876 diff 9.094947017729282E-12 GAP 4.484442344708174E14 Otima? Feasible Tempo gasto: 588siterations14 order size 38214 aisle size 483 ------
+Running instance_0027.txt
 
- -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 108.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 1siterations6 order size 1841 aisle size 165 ------
+Running instance_0003.txt
 
- -------Resultado: l 15.619718309859154 diff 11.028169014084533 GAP 8.464628641089806 Otima? Feasible ------
+ -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations3 order size 82 aisle size 124 ------
+Running instance_0033.txt
 
- -------Resultado: l 4.416666666666667 diff -3.552713678800501E-15 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 200.17525773195857 diff -2.2737367544323206E-12 GAP 1.079463810101067E14 Otima? Feasible Tempo gasto: 588siterations9 order size 38214 aisle size 483 ------
+Running instance_0035.txt
 
- -------Resultado: l 117.2 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 166.0 diff 0.0 GAP 7.344918027757834E11 Otima? Feasible Tempo gasto: 151siterations9 order size 11541 aisle size 398 ------
+Running instance_0006.txt
 
- -------Resultado: l 149.33333333333334 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 691.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 22siterations5 order size 10341 aisle size 184 ------
+Running instance_0026.txt
 
- -------Resultado: l 3.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 80.72413793103448 diff 1.7053025658242404E-13 GAP 4.967911707094011E12 Otima? Feasible Tempo gasto: 106siterations9 order size 1857 aisle size 165 ------
+Running instance_0013.txt
 
- -------Resultado: l 11.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 117.38461538461539 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 39siterations5 order size 8375 aisle size 413 ------
+Running instance_0030.txt
 
- -------Resultado: l 177.875 diff 0.0 GAP 2.6349556847373228E12 Otima? Feasible ------
+ -------Resultado: l 444.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 158siterations7 order size 14952 aisle size 482 ------
+Running instance_0008.txt
 
- -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 157.0 diff 0.0 GAP 3.536072409346885E12 Otima? Feasible Tempo gasto: 121siterations9 order size 2185 aisle size 168 ------
+Running instance_0011.txt
 
- -------Resultado: l 181.63636363636365 diff -2.2737367544323206E-13 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 15.941176470588236 diff 19.026315789473657 GAP 5.711006234078697 Otima? Feasible Tempo gasto: 34siterations9 order size 1029 aisle size 375 ------
+Running instance_0028.txt
 
- -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 226.6 diff -2.2737367544323206E-13 GAP 1.1439230714068281E12 Otima? Feasible Tempo gasto: 194siterations9 order size 12334 aisle size 398 ------
+Running instance_0025.txt
 
- -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 368.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 9siterations4 order size 6468 aisle size 179 ------
+Running instance_0024.txt
 
- -------Resultado: l 392.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 150.16666666666666 diff 1.4210854715202004E-13 GAP 5.700111423317691E12 Otima? Feasible Tempo gasto: 107siterations9 order size 2448 aisle size 163 ------
+Running instance_0032.txt
 
- -------Resultado: l 202.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 356.96875 diff 5650.380281690141 GAP 0.2081348084432531 Otima? Feasible Tempo gasto: 588siterations9 order size 28263 aisle size 483 ------
+Running instance_0009.txt
 
- -------Resultado: l 16.92233009708738 diff -2.842170943040401E-14 GAP 4.523714283071004E13 Otima? Feasible ------
+ -------Resultado: l 4.416666666666667 diff -3.552713678800501E-15 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations4 order size 70 aisle size 304 ------
+Running instance_0018.txt
 
- -------Resultado: l 36.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 117.2 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal Tempo gasto: 6siterations4 order size 2682 aisle size 90 ------
+Running instance_0015.txt
 
- -------Resultado: l 85.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 149.33333333333334 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal Tempo gasto: 25siterations5 order size 7367 aisle size 402 ------
+Running instance_0004.txt
 
- -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 3.5 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations4 order size 16 aisle size 91 ------
+Running instance_0012.txt
 
- -------Resultado: l 15.757142857142858 diff 13.04285714285713 GAP 4.73643948104906 Otima? Feasible ------
+ -------Resultado: l 11.25 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations4 order size 133 aisle size 342 ------
+Running instance_0029.txt
 
- -------Resultado: l 15.458823529411765 diff 20.976470588235344 GAP 3.5907567068406943 Otima? Feasible ------
+ -------Resultado: l 82.42857142857143 diff 0.0 GAP 9.21223512762469E10 Otima? Feasible Tempo gasto: 34siterations9 order size 5581 aisle size 417 ------
+Running instance_0005.txt
 
- -------Resultado: l 177.875 diff 1.1368683772161603E-13 GAP 2.019197444862453E12 Otima? Feasible ------
+ -------Resultado: l 171.33333333333334 diff -1.1368683772161603E-13 GAP 2.0648636980467585E12 Otima? Feasible Tempo gasto: 131siterations9 order size 2625 aisle size 161 ------
+Running instance_0002.txt
 
- -------Resultado: l 16.761904761904763 diff -4.263256414560601E-14 GAP 1.8201232161253323E11 Otima? Feasible ------
+ -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations1 order size 7 aisle size 33 ------
+Running instance_0014.txt
 
- -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 181.63636363636363 diff 1.1368683772161603E-13 GAP 3.623358503672792E10 Otima? Feasible Tempo gasto: 101siterations9 order size 12402 aisle size 413 ------
+Running instance_0001.txt
 
- -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations3 order size 61 aisle size 116 ------
+Running instance_0020.txt
 
- -------Resultado: l 691.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations2 order size 5 aisle size 5 ------
+Running instance_0021.txt
 
- -------Resultado: l 117.38461538461539 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 631.5 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 10siterations4 order size 11321 aisle size 185 ------
+Running instance_0007.txt
 
- -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 392.25 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 13siterations6 order size 8320 aisle size 180 ------
+Running instance_0019.txt
 
- -------Resultado: l 16.85 diff -2.1316282072803006E-14 GAP 4.8058447074834114E10 Otima? Feasible ------
+ -------Resultado: l 202.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 2siterations5 order size 2257 aisle size 134 ------
+Running instance_0031.txt
 
- -------Resultado: l 4.416666666666667 diff -3.552713678800501E-15 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 41.077419354839144 diff 2.546585164964199E-11 GAP 4.241951040879244E14 Otima? Feasible Tempo gasto: 588siterations9 order size 45112 aisle size 482 ------
+Running instance_0010.txt
 
- -------Resultado: l 117.2 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 16.234693877551017 diff -5.684341886080802E-14 GAP 3.0185943694790903E12 Otima? Feasible Tempo gasto: 69siterations9 order size 1602 aisle size 383 ------
+Running instance_0017.txt
 
- -------Resultado: l 149.33333333333334 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 36.5 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations4 order size 417 aisle size 83 ------
+Running instance_0023.txt
 
- -------Resultado: l 3.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 149.59999999999997 diff -2.5579538487363607E-13 GAP 2.3185616377475747E12 Otima? Feasible Tempo gasto: 112siterations9 order size 2070 aisle size 164 ------
+Running instance_0022.txt
 
- -------Resultado: l 11.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 180.63636363636363 diff 1.1368683772161603E-13 GAP 0.0 Otima? Optimal Tempo gasto: 51siterations6 order size 2162 aisle size 165 ------
+Running instance_0016.txt
 
- -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 85.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations4 order size 1108 aisle size 88 ------
+Running instance_0034.txt
 
- -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 210.37113402061877 diff 1.8189894035458565E-12 GAP 1.0720574529252598E14 Otima? Feasible Tempo gasto: 587siterations9 order size 38202 aisle size 483 ------
+Running instance_0027.txt
 
- -------Resultado: l 181.63636363636365 diff -2.2737367544323206E-13 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 108.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations6 order size 1841 aisle size 165 ------
+Running instance_0033.txt
 
- -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 702.0 diff 0.0 GAP 4.8923E14 Otima? Feasible Tempo gasto: 589siterations5 order size 38214 aisle size 483 ------
+Running instance_0035.txt
 
- -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 162.0 diff 0.0 GAP 1.4069219821658352E12 Otima? Feasible Tempo gasto: 187siterations11 order size 11541 aisle size 398 ------
+Running instance_0026.txt
 
- -------Resultado: l 392.25 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 81.16 diff 1.1368683772161603E-13 GAP 4.812400559868854E12 Otima? Feasible Tempo gasto: 136siterations11 order size 1857 aisle size 165 ------
+Running instance_0027.txt
 
- -------Resultado: l 202.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 108.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations6 order size 1841 aisle size 165 ------
+Running instance_0033.txt
 
- -------Resultado: l 16.711538461538467 diff 2.842170943040401E-14 GAP 2.436795802103721E12 Otima? Feasible ------
+ -------Resultado: l 668.4615384615385 diff 0.0 GAP 1.500848798588515E13 Otima? Feasible Tempo gasto: 590siterations11 order size 38214 aisle size 483 ------
+Running instance_0027.txt
 
- -------Resultado: l 36.5 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 108.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations6 order size 1841 aisle size 165 ------
+Running instance_0033.txt
 
- -------Resultado: l 85.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 682.75 diff 0.0 GAP 4.8923E14 Otima? Feasible Tempo gasto: 589siterations5 order size 38214 aisle size 483 ------
+Running instance_0035.txt
 
- -------Resultado: l 16.902912621359228 diff -9.379164112033322E-13 GAP 2.3032976375761094E12 Otima? Feasible ------
+ -------Resultado: l 162.0 diff 0.0 GAP 1.4069219821658352E12 Otima? Feasible Tempo gasto: 190siterations11 order size 11541 aisle size 398 ------
+Running instance_0026.txt
 
- -------Resultado: l 53.52928922933315 diff -1029.290809191995 GAP 0.4095583805690662 Otima? Feasible ------
+ -------Resultado: l 81.16 diff 1.1368683772161603E-13 GAP 4.812400559868854E12 Otima? Feasible Tempo gasto: 138siterations11 order size 1857 aisle size 165 ------
+Running instance_0027.txt
 
- -------Resultado: l 16.941176470588232 diff 15.57692307692247 GAP 12.709550581807964 Otima? Feasible ------
+ -------Resultado: l 108.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 0siterations6 order size 1841 aisle size 165 ------
+Running instance_0033.txt
 
- -------Resultado: l 16.902912621359217 diff -2.984279490192421E-13 GAP 2.492094897802275E12 Otima? Feasible ------
+ -------Resultado: l 702.0 diff 0.0 GAP 4.8923E14 Otima? Feasible Tempo gasto: 589siterations5 order size 38214 aisle size 483 ------
+Running instance_0035.txt
 
- -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 162.0 diff 0.0 GAP 1.3688266383337375E12 Otima? Feasible Tempo gasto: 328siterations19 order size 11541 aisle size 398 ------
+Running instance_0026.txt
 
- -------Resultado: l 601.5 diff 209.79999999999995 GAP 0.02235243213200609 Otima? Optimal ------
+ -------Resultado: l 83.42307692307692 diff 2.842170943040401E-14 GAP 3.524313733593323E12 Otima? Feasible Tempo gasto: 538siterations19 order size 1857 aisle size 165 ------
+Running instance_0008.txt
 
- -------Resultado: l 117.38461538461539 diff 269.4999999999999 GAP 0.03480459626224057 Otima? Optimal ------
+ -------Resultado: l 157.77777777777777 diff 5.684341886080802E-14 GAP 2.990471983812351E12 Otima? Feasible Tempo gasto: 231siterations19 order size 2185 aisle size 168 ------
+Running instance_0011.txt
 
- -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 16.480000000000015 diff 1.1368683772161603E-13 GAP 5.615574269220342E11 Otima? Feasible Tempo gasto: 67siterations19 order size 1029 aisle size 375 ------
+Running instance_0028.txt
 
- -------Resultado: l 4.416666666666667 diff 1.571428571428573 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 227.1 diff 2.842170943040401E-14 GAP 3.006990911954272E11 Otima? Feasible Tempo gasto: 589siterations18 order size 12334 aisle size 398 ------
+Running instance_0024.txt
 
- -------Resultado: l 117.2 diff 72.11111111111114 GAP 0.03987081206973219 Otima? Optimal ------
+ -------Resultado: l 147.47368421052607 diff -2.8421709430404007E-13 GAP 5.162801818579434E12 Otima? Feasible Tempo gasto: 216siterations19 order size 2448 aisle size 163 ------
+Running instance_0032.txt
 
- -------Resultado: l 123.125 diff 180.047619047619 GAP 0.03955921321954117 Otima? Optimal ------
+ -------Resultado: l 561.2727272727273 diff 2.2737367544323206E-13 GAP 8.295599672967324E12 Otima? Feasible Tempo gasto: 589siterations8 order size 28263 aisle size 483 ------
+Running instance_0029.txt
 
- -------Resultado: l 3.5 diff 0.5 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 82.49999999999996 diff -5.684341886080802E-14 GAP 8.597238721855817E10 Otima? Feasible Tempo gasto: 62siterations19 order size 5581 aisle size 417 ------
+Running instance_0005.txt
 
- -------Resultado: l 11.25 diff 9.727272727272727 GAP 0.03699376947002463 Otima? Optimal ------
+ -------Resultado: l 174.5 diff 0.0 GAP 1.7028113633950142E12 Otima? Feasible Tempo gasto: 327siterations19 order size 2625 aisle size 161 ------
+Running instance_0014.txt
 
- -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 181.63636363636363 diff 1.1368683772161603E-13 GAP 0.0 Otima? Optimal Tempo gasto: 367siterations12 order size 12402 aisle size 413 ------
+Running instance_0031.txt
 
- -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 258.1216216216216 diff -4.547473508864641E-13 GAP 1.1324775476168044E14 Otima? Feasible Tempo gasto: 589siterations4 order size 45112 aisle size 482 ------
+Running instance_0010.txt
 
- -------Resultado: l 178.0 diff 498.375 GAP 0.005286921610646676 Otima? Optimal ------
+ -------Resultado: l 16.357142857142858 diff 3.6804123711335706 GAP 80.18634781272102 Otima? Feasible Tempo gasto: 158siterations19 order size 1602 aisle size 383 ------
+Running instance_0023.txt
 
- -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 149.59999999999974 diff -2.5579538487363607E-13 GAP 0.0 Otima? Optimal Tempo gasto: 154siterations13 order size 2070 aisle size 164 ------
+Running instance_0034.txt
 
- -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 679.0714285714286 diff 2.2737367544323206E-13 GAP 4.836702611501969E14 Otima? Feasible Tempo gasto: 589siterations5 order size 38202 aisle size 483 ------
+Running instance_0010.txt
 
- -------Resultado: l 392.25 diff 128.33333333333326 GAP 0.03962509981922737 Otima? Optimal ------
+ -------Resultado: l 16.186915887850486 diff 3.410605131648481E-13 GAP 3.002957057131981E12 Otima? Feasible Tempo gasto: 184siterations19 order size 1602 aisle size 383 ------
+Running instance_0010.txt
 
- -------Resultado: l 178.0 diff 55.5 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 16.95145631067961 diff -1.7053025658242404E-13 GAP 2.41763625549753E12 Otima? Feasible Tempo gasto: 589siterations2 order size 1602 aisle size 383 ------
+Running instance_0023.txt
 
- -------Resultado: l 16.86407766990291 diff 0.1372549019605458 GAP 1532.3929157539303 Otima? Feasible ------
+ -------Resultado: l 149.6 diff 5.684341886080802E-14 GAP 0.0 Otima? Optimal Tempo gasto: 311siterations4 order size 2070 aisle size 164 ------
 
- -------Resultado: l 36.5 diff 9.0 GAP 0.0 Otima? Optimal ------
 
- -------Resultado: l 85.0 diff 44.33333333333334 GAP 0.0 Otima? Optimal ------
 
- -------Resultado: l 12.0 diff 0.0 GAP 0.0 Otima? Optimal ------
 
- -------Resultado: l 691.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+Running instance_0027.txt
 
- -------Resultado: l 117.38461538461539 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 108.0 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 1siterations6 order size 1841 aisle size 165 ------
+Running instance_0033.txt
 
- -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 242.7124999999999 diff -3.637978807091713E-12 GAP 8.850460399607562E13 Otima? Feasible Tempo gasto: 589siterations3 order size 38214 aisle size 483 ------
+Running instance_0035.txt
 
- -------Resultado: l 16.85 diff 2.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 163.06666666666666 diff 5.684341886080802E-14 GAP 1.794128701328969E12 Otima? Feasible Tempo gasto: 589siterations5 order size 11541 aisle size 398 ------
+Running instance_0026.txt
 
- -------Resultado: l 4.416666666666667 diff -3.552713678800501E-15 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 117.2 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 149.33333333333334 diff -2.842170943040401E-14 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 3.5 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 11.25 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 177.875 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 2.0 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 181.63636363636363 diff -2.2737367544323206E-13 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 15.0 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 5.0 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 392.25 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 202.0 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 16.851485148514854 diff 28.285714285715216 GAP 7.867602950421964 Otima? Feasible ------
-
- -------Resultado: l 36.5 diff 0.0 GAP 0.0 Otima? Optimal ------
-
- -------Resultado: l 85.0 diff 0.0 GAP 0.0 Otima? Optimal ------
+ -------Resultado: l 83.2051282051282 diff -6.252776074688882E-13 GAP 3.754546188856185E12 Otima? Feasible Tempo gasto: 589siterations3 order size 1857 aisle size 165 ------
+Running instance_0008.txt
+
+ -------Resultado: l 162.94117647058823 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 414siterations4 order size 2185 aisle size 168 ------
+Running instance_0011.txt
+
+ -------Resultado: l 15.636363636363637 diff -2.842170943040401E-14 GAP 9.252882456455294E11 Otima? Feasible Tempo gasto: 589siterations4 order size 1029 aisle size 375 ------
+Running instance_0028.txt
+
+ -------Resultado: l 227.1 diff 2.842170943040401E-14 GAP 0.0 Otima? Optimal Tempo gasto: 361siterations6 order size 12334 aisle size 398 ------
+Running instance_0024.txt
+
+ -------Resultado: l 155.66666666666666 diff 400.285714285714 GAP 0.1543752864937575 Otima? Feasible Tempo gasto: 591siterations2 order size 2448 aisle size 163 ------
+Running instance_0032.txt
+
+ -------Resultado: l 354.5454545454545 diff 5746.985915492957 GAP 0.17717707254900403 Otima? Feasible Tempo gasto: 589siterations2 order size 28263 aisle size 483 ------
+Running instance_0029.txt
+
+ -------Resultado: l 82.5 diff 0.0 GAP 0.0 Otima? Optimal Tempo gasto: 185siterations5 order size 5581 aisle size 417 ------
+Running instance_0005.txt
+
+ -------Resultado: l 164.4 diff -2.842170943040401E-14 GAP 9.567917078939527E12 Otima? Feasible Tempo gasto: 589siterations4 order size 2625 aisle size 161 ------
+Running instance_0014.txt
+
+ -------Resultado: l 181.63636363636363 diff 1.1368683772161603E-13 GAP 0.0 Otima? Optimal Tempo gasto: 45siterations5 order size 12402 aisle size 413 ------
+Running instance_0031.txt
+
+ -------Resultado: l 258.1216216216216 diff -3.637978807091713E-12 GAP 5.135376105613335E14 Otima? Feasible Tempo gasto: 589siterations2 order size 45112 aisle size 482 ------
+Running instance_0010.txt
+
+ -------Resultado: l 17.0 diff 0.0 GAP 2.4862129913466675E12 Otima? Feasible Tempo gasto: 589siterations4 order size 1602 aisle size 383 ------
+Running instance_0023.txt
+
+ -------Resultado: l 149.6 diff 5.684341886080802E-14 GAP 0.0 Otima? Optimal Tempo gasto: 271siterations4 order size 2070 aisle size 164 ------
+Running instance_0034.txt
+
+ -------Resultado: l 231.8863636363638 diff 7.275957614183426E-12 GAP 4.518906293462966E14 Otima? Feasible Tempo gasto: 589siterations3 order size 38202 aisle size 483 ------
+Running instance_0027.txt
+Running instance_0033.txt
+Running instance_0027.txt
+Running instance_0033.txt
+Running instance_0027.txt
+Running instance_0033.txt
+Running instance_0027.txt
+Running instance_0027.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0006.txt
+Running instance_0026.txt
+Running instance_0013.txt
+Running instance_0030.txt
+Running instance_0008.txt
+Running instance_0011.txt
+Running instance_0028.txt
+Running instance_0025.txt
+Running instance_0024.txt
+Running instance_0032.txt
+Running instance_0009.txt
+Running instance_0018.txt
+Running instance_0015.txt
+Running instance_0004.txt
+Running instance_0012.txt
+Running instance_0029.txt
+Running instance_0005.txt
+Running instance_0002.txt
+Running instance_0014.txt
+Running instance_0001.txt
+Running instance_0020.txt
+Running instance_0021.txt
+Running instance_0007.txt
+Running instance_0019.txt
+Running instance_0031.txt
+Running instance_0010.txt
+Running instance_0017.txt
+Running instance_0023.txt
+Running instance_0022.txt
+Running instance_0016.txt
+Running instance_0034.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0006.txt
+Running instance_0026.txt
+Running instance_0013.txt
+Running instance_0030.txt
+Running instance_0008.txt
+Running instance_0011.txt
+Running instance_0028.txt
+Running instance_0025.txt
+Running instance_0024.txt
+Running instance_0032.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0006.txt
+Running instance_0026.txt
+Running instance_0013.txt
+Running instance_0030.txt
+Running instance_0008.txt
+Running instance_0011.txt
+Running instance_0028.txt
+Running instance_0025.txt
+Running instance_0024.txt
+Running instance_0032.txt
+Running instance_0009.txt
+Running instance_0018.txt
+Running instance_0015.txt
+Running instance_0004.txt
+Running instance_0012.txt
+Running instance_0029.txt
+Running instance_0005.txt
+Running instance_0002.txt
+Running instance_0014.txt
+Running instance_0001.txt
+Running instance_0020.txt
+Running instance_0021.txt
+Running instance_0007.txt
+Running instance_0019.txt
+Running instance_0031.txt
+Running instance_0010.txt
+Running instance_0017.txt
+Running instance_0023.txt
+Running instance_0022.txt
+Running instance_0016.txt
+Running instance_0034.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0006.txt
+Running instance_0026.txt
+Running instance_0013.txt
+Running instance_0030.txt
+Running instance_0008.txt
+Running instance_0011.txt
+Running instance_0028.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0006.txt
+Running instance_0026.txt
+Running instance_0013.txt
+Running instance_0030.txt
+Running instance_0008.txt
+Running instance_0011.txt
+Running instance_0028.txt
+Running instance_0025.txt
+Running instance_0024.txt
+Running instance_0032.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0006.txt
+Running instance_0026.txt
+Running instance_0013.txt
+Running instance_0030.txt
+Running instance_0008.txt
+Running instance_0011.txt
+Running instance_0028.txt
+Running instance_0025.txt
+Running instance_0024.txt
+Running instance_0032.txt
+Running instance_0009.txt
+Running instance_0018.txt
+Running instance_0015.txt
+Running instance_0004.txt
+Running instance_0012.txt
+Running instance_0029.txt
+Running instance_0005.txt
+Running instance_0002.txt
+Running instance_0014.txt
+Running instance_0001.txt
+Running instance_0020.txt
+Running instance_0021.txt
+Running instance_0007.txt
+Running instance_0019.txt
+Running instance_0031.txt
+Running instance_0010.txt
+Running instance_0017.txt
+Running instance_0023.txt
+Running instance_0022.txt
+Running instance_0016.txt
+Running instance_0034.txt
+Running instance_0035.txt
+Running instance_0031.txt
+Running instance_0034.txt
+Running instance_0035.txt
+Running instance_0031.txt
+Running instance_0034.txt
+Running instance_0034.txt
+Running instance_0034.txt
+Running instance_0027.txt
+Running instance_0003.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0006.txt
+Running instance_0026.txt
+Running instance_0013.txt
+Running instance_0030.txt
+Running instance_0008.txt
+Running instance_0011.txt
+Running instance_0028.txt
+Running instance_0025.txt
+Running instance_0024.txt
+Running instance_0032.txt
+Running instance_0009.txt
+Running instance_0018.txt
+Running instance_0015.txt
+Running instance_0004.txt
+Running instance_0012.txt
+Running instance_0029.txt
+Running instance_0005.txt
+Running instance_0002.txt
+Running instance_0014.txt
+Running instance_0001.txt
+Running instance_0020.txt
+Running instance_0021.txt
+Running instance_0007.txt
+Running instance_0019.txt
+Running instance_0031.txt
+Running instance_0010.txt
+Running instance_0017.txt
+Running instance_0023.txt
+Running instance_0022.txt
+Running instance_0016.txt
+Running instance_0034.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0026.txt
+Running instance_0030.txt
+Running instance_0011.txt
+Running instance_0032.txt
+Running instance_0031.txt
+Running instance_0034.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0026.txt
+Running instance_0030.txt
+Running instance_0011.txt
+Running instance_0032.txt
+Running instance_0031.txt
+Running instance_0034.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0026.txt
+Running instance_0030.txt
+Running instance_0011.txt
+Running instance_0032.txt
+Running instance_0031.txt
+Running instance_0034.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0026.txt
+Running instance_0030.txt
+Running instance_0011.txt
+Running instance_0032.txt
+Running instance_0031.txt
+Running instance_0034.txt
+Running instance_0033.txt
+Running instance_0033.txt
+Running instance_0035.txt
+Running instance_0026.txt
+Running instance_0030.txt
+Running instance_0011.txt
+Running instance_0032.txt
+Running instance_0031.txt
+Running instance_0034.txt
+Running instance_0032.txt

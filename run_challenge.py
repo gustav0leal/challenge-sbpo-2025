@@ -10,6 +10,8 @@ OR_TOOLS_PATH = "$HOME/Documents/or-tools/build/lib/"
 USE_CPLEX = True
 USE_OR_TOOLS = True
 
+
+# editing to generate the best answers DEPOIS ARRUMAR
 MAX_RUNNING_TIME = "605s"
 
 def compile_code(source_folder):
@@ -52,6 +54,8 @@ def run_benchmark(source_folder, input_folder, output_folder):
     for filename in os.listdir(input_folder):
         if filename.endswith(".txt"):
             print(f"Running {filename}")
+            with open("log.txt", "a") as arquivo:
+                arquivo.write(f"Running {filename}\n")
             input_file = os.path.join(input_folder, filename)
             output_file = os.path.join(output_folder, f"{os.path.splitext(filename)[0]}.txt")
             with open(output_file, "w") as out:
