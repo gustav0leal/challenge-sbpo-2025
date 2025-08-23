@@ -137,8 +137,10 @@ public class SliceChallengeSolver {
             cplex.addGe(sumorders, waveSizeLB);
 
             cplex.addLe(sumorders, waveSizeUB);
+
+            cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1 );
             
-            for(int sliceIteration = 0 ; sliceIteration < 2 ; sliceIteration++){
+            for(int sliceIteration = 0 ; sliceIteration < 3 ; sliceIteration++){
                 IloLinearNumExpr sumaisles = cplex.linearNumExpr();
 
                 for (int i = 0; i < aisvar.size(); i++) {
@@ -160,8 +162,9 @@ public class SliceChallengeSolver {
                     itensConstraints.add(cplex.addLe(ordersum, aislesum)); // remove
                 }
 
+                System.out.println("builded starting remaining time: " + getRemainingTime(stopWatch));
+
                 double startTime = cplex.getCplexTime();
-                cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1 );
                 // cplex.setParam(IloCplex.DoubleParam.WorkMem, 14000); // limitar uso de memoria pra 14 GB
                 // // Descobrir o número de núcleos da CPU
                 // int totalCores = Runtime.getRuntime().availableProcessors();
@@ -171,7 +174,7 @@ public class SliceChallengeSolver {
                 IloLinearNumExpr objetivo = cplex.linearNumExpr();
                 for(int c = 0; c < BIN_ITER; c++)
                 {
-                    if((sliceIteration == 0 && getRemainingTime(stopWatch) <= 150) || getRemainingTime(stopWatch) <= 20)
+                    if(getRemainingTime(stopWatch) <= 20)
                         break;
 
                     iterr = c;
@@ -227,7 +230,7 @@ public class SliceChallengeSolver {
                                 tot = tot+1;
                         }
                         l = l + cplex.getObjValue()/tot;
-                        if(cplex.getStatus() == IloCplex.Status.Optimal && Math.abs(cplex.getObjValue()) < epsilon){
+                        if(Math.abs(cplex.getObjValue()) < epsilon){
                             mark = true;
                             break;
                         }
@@ -242,12 +245,19 @@ public class SliceChallengeSolver {
                     } 
                 }
                 
-                if(sliceIteration != 1){
+                if(getRemainingTime(stopWatch) < 60){
+                    break;
+                }
+
+                if(sliceIteration != 2){
                     System.out.println("Pushing slice variables...");
+                    System.out.println("rebuilding starting remaining time: " + getRemainingTime(stopWatch));
 
                     var currentAislesSize = choosenAisleIndexes.size();
+                    int lastIndex = sliceIteration == 0 ?
+                        Math.min(currentAislesSize + (int) firstRunAislesPercentage * aisles.size(), aisles.size()) : aisles.size();
 
-                    for(int a = currentAislesSize ; a < aisles.size() ; a++){
+                    for(int a = currentAislesSize ; a < lastIndex ; a++){
                         choosenAisleIndexes.add(AisleItemsCount.get(a).second);
                         inverseChoosenAisleIndexes[AisleItemsCount.get(a).second] = a;
                         aisvar.add(cplex.numVar(0, 1, IloNumVarType.Bool));
@@ -262,6 +272,8 @@ public class SliceChallengeSolver {
                     }
 
                     cplex.remove(objective);
+
+                    cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.001 );
                 }
             }
 
