@@ -112,7 +112,7 @@ public class SliceChallengeSolver {
             IloCplex cplex = new IloCplex();
             cplex.setOut(null);
             cplex.setWarning(null);
-            cplex.setParam(IloCplex.IntParam.MIP.Display, 0);
+            cplex.setParam(IloCplex.IntParam.MIP.Display, 2);
             // cplex.setParam(IloCplex.IntParam.MIP.Interval, 0);
             // cplex.setParam(IloCplex.IntParam.MIP.Limits.TreeMemory, 0);
 
@@ -126,7 +126,7 @@ public class SliceChallengeSolver {
             // cplex.setParam(IloCplex.IntParam.MIP.Limits.StrongIt, 10); 
             // cplex.setParam(IloCplex.IntParam.MIP.Strategy.Branch, 3);
             IloNumVar [] ordvar = cplex.numVarArray(orders.size(), 0, 1, IloNumVarType.Bool);
-            var aisvar = Arrays.asList(cplex.numVarArray(choosenAisleIndexes.size(), 0, 1, IloNumVarType.Bool));
+            var aisvar = new ArrayList<>(Arrays.asList(cplex.numVarArray(choosenAisleIndexes.size(), 0, 1, IloNumVarType.Bool)));
             IloLinearNumExpr sumorders = cplex.linearNumExpr();
 
             for (int i = 0; i < orders.size(); i++) {
@@ -138,102 +138,132 @@ public class SliceChallengeSolver {
 
             cplex.addLe(sumorders, waveSizeUB);
             
-            IloLinearNumExpr sumaisles = cplex.linearNumExpr();
+            for(int sliceIteration = 0 ; sliceIteration < 2 ; sliceIteration++){
+                IloLinearNumExpr sumaisles = cplex.linearNumExpr();
 
-            for (int i = 0; i < aisvar.size(); i++) {
-                sumaisles.addTerm(1, aisvar.get(i));
-            }
-
-            cplex.addGe(sumaisles, 1); // remove...
-
-            for (int i = 0; i < nItems; i++) {
-                IloLinearNumExpr ordersum = cplex.linearNumExpr();
-                IloLinearNumExpr aislesum = cplex.linearNumExpr();
-                for (Map.Entry<Integer, Integer> entry: OrderItems[i].entrySet()) {
-                    ordersum.addTerm(entry.getValue(), ordvar[entry.getKey()]);
+                for (int i = 0; i < aisvar.size(); i++) {
+                    sumaisles.addTerm(1, aisvar.get(i));
                 }
-                for (Map.Entry<Integer, Integer> entry : AisleItems[i].entrySet()) {
-                    aislesum.addTerm(entry.getValue(), aisvar.get(inverseChoosenAisleIndexes[entry.getKey()]));
+
+                var sumAislesConstraint = cplex.addGe(sumaisles, 1); // remove...
+                var itensConstraints = new ArrayList<IloConstraint>();
+
+                for (int i = 0; i < nItems; i++) {
+                    IloLinearNumExpr ordersum = cplex.linearNumExpr();
+                    IloLinearNumExpr aislesum = cplex.linearNumExpr();
+                    for (Map.Entry<Integer, Integer> entry: OrderItems[i].entrySet()) {
+                        ordersum.addTerm(entry.getValue(), ordvar[entry.getKey()]);
+                    }
+                    for (Map.Entry<Integer, Integer> entry : AisleItems[i].entrySet()) {
+                        aislesum.addTerm(entry.getValue(), aisvar.get(inverseChoosenAisleIndexes[entry.getKey()]));
+                    }
+                    itensConstraints.add(cplex.addLe(ordersum, aislesum)); // remove
                 }
-                cplex.addLe(ordersum, aislesum); // remove
-            }
 
-            double startTime = cplex.getCplexTime();
-            cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1 );
-            // cplex.setParam(IloCplex.DoubleParam.WorkMem, 14000); // limitar uso de memoria pra 14 GB
-            // // Descobrir o número de núcleos da CPU
-            // int totalCores = Runtime.getRuntime().availableProcessors();
-            // int maxThreads = (totalCores*8+9)/10; // 80% dos núcleos
-            // // Limitar o número de threads do CPLEX
-            // cplex.setParam(IloCplex.IntParam.Threads, maxThreads);
-            IloLinearNumExpr objetivo = cplex.linearNumExpr();
-            for(int c = 0; c < BIN_ITER; c++)
-            {
-                if(getRemainingTime(stopWatch) <= 10)
-                    break;
-
-                iterr = c;
-                if(c == 10 || getRemainingTime(stopWatch) <= 150)
+                double startTime = cplex.getCplexTime();
+                cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1 );
+                // cplex.setParam(IloCplex.DoubleParam.WorkMem, 14000); // limitar uso de memoria pra 14 GB
+                // // Descobrir o número de núcleos da CPU
+                // int totalCores = Runtime.getRuntime().availableProcessors();
+                // int maxThreads = (totalCores*8+9)/10; // 80% dos núcleos
+                // // Limitar o número de threads do CPLEX
+                // cplex.setParam(IloCplex.IntParam.Threads, maxThreads);
+                IloLinearNumExpr objetivo = cplex.linearNumExpr();
+                for(int c = 0; c < BIN_ITER; c++)
                 {
-                    cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.0);
-                }
-                // if(c != 0){
-                    // System.out.println("ALO7 "+cplex.getObjValue());
-                // }
-                // double mid = l;
-                if(c == BIN_ITER-1 || getRemainingTime(stopWatch) <= 150)
-                    System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
-                else   
-                    System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)/(2)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
-                if(c == 0 || Math.abs(cplex.getObjValue()) > epsilon)
-                {
-                    if(c != 0){
-                        // cplex.addGe(objetivo, cplex.getObjValue());
-                        cplex.remove(objective);
-                        // cplex.setParam(IloCplex.IntParam.RootAlg, IloCplex.Algorithm.Dual);
-                    }
-                    objetivo = cplex.linearNumExpr();
-                    for (int i = 0; i < orders.size(); i++) {
-                        for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
-                            objetivo.addTerm(entry.getValue(), ordvar[i]);
-                        }
-                    }
-                    
-                    for (int i = 0; i < aisvar.size(); i++) {
-                        objetivo.addTerm(-l, aisvar.get(i));
-                    }
-
-                    
-                    objective = cplex.addMaximize(objetivo);
-                }
-
-                // TIRANDO TLE PRA BRUTAR
-                if(c == BIN_ITER-1 || getRemainingTime(stopWatch) <= 150)
-                    cplex.setParam(IloCplex.DoubleParam.TiLim, (getRemainingTime(stopWatch)-10));
-                else
-                    cplex.setParam(IloCplex.DoubleParam.TiLim, (getRemainingTime(stopWatch)-10)/(2));
-                if (cplex.solve()) {
-                    System.out.println("Valor ótimo = " + cplex.getObjValue());
-                    int tot = 0;
-                    for (int i = 0; i < aisvar.size(); i++) {
-                        if(cplex.getValue(aisvar.get(i)) > 0.5)
-                            tot = tot+1;
-                    }
-                    l = l + cplex.getObjValue()/tot;
-                    if(cplex.getStatus() == IloCplex.Status.Optimal && Math.abs(cplex.getObjValue()) < epsilon){
-                        mark = true;
+                    if((sliceIteration == 0 && getRemainingTime(stopWatch) <= 150) || getRemainingTime(stopWatch) <= 20)
                         break;
+
+                    iterr = c;
+                    if(c == 10 || getRemainingTime(stopWatch) <= 150)
+                    {
+                        cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.0);
                     }
-                    // if(Math.abs(cplex.getObjValue()) > epsilon)
-                    // System.out.println(cplex.getObjValue());
-                    System.out.println("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus()+ " Tempo gasto: " + stopWatch.getTime(TimeUnit.SECONDS) + "s" +" ------\n");
-                } else {
-                    cplex.end();
-                    System.out.println("Não foi encontrada solução viável.");
-                    return null;
-                } 
+                    // if(c != 0){
+                        // System.out.println("ALO7 "+cplex.getObjValue());
+                    // }
+                    // double mid = l;
+                    if(c == BIN_ITER-1 || getRemainingTime(stopWatch) <= 150){
+                        System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
+                    }
+                    else{   
+                        System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)/(2)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
+                    }
+
+                    if(c == 0 || Math.abs(cplex.getObjValue()) > epsilon)
+                    {
+                        if(c != 0){
+                            // cplex.addGe(objetivo, cplex.getObjValue());
+                            cplex.remove(objective);
+                            // cplex.setParam(IloCplex.IntParam.RootAlg, IloCplex.Algorithm.Dual);
+                        }
+                        objetivo = cplex.linearNumExpr();
+                        for (int i = 0; i < orders.size(); i++) {
+                            for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
+                                objetivo.addTerm(entry.getValue(), ordvar[i]);
+                            }
+                        }
+                        
+                        for (int i = 0; i < aisvar.size(); i++) {
+                            objetivo.addTerm(-l, aisvar.get(i));
+                        }
+
+                        objective = cplex.addMaximize(objetivo);
+                    }
+
+                    // TIRANDO TLE PRA BRUTAR
+                    if(sliceIteration != 0 && (c == BIN_ITER-1 || getRemainingTime(stopWatch) <= 150)){
+                        cplex.setParam(IloCplex.DoubleParam.TimeLimit, (getRemainingTime(stopWatch)-10));
+                    }
+                    else{
+                        cplex.setParam(IloCplex.DoubleParam.TimeLimit, (getRemainingTime(stopWatch)-10)/(2));
+                    }
+
+                    if (cplex.solve()) {
+                        System.out.println("Valor ótimo = " + cplex.getObjValue());
+                        int tot = 0;
+                        for (int i = 0; i < aisvar.size(); i++) {
+                            if(cplex.getValue(aisvar.get(i)) > 0.5)
+                                tot = tot+1;
+                        }
+                        l = l + cplex.getObjValue()/tot;
+                        if(cplex.getStatus() == IloCplex.Status.Optimal && Math.abs(cplex.getObjValue()) < epsilon){
+                            mark = true;
+                            break;
+                        }
+                        // if(Math.abs(cplex.getObjValue()) > epsilon)
+                        // System.out.println(cplex.getObjValue());
+                        System.out.println("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus()+ " Tempo gasto: " + stopWatch.getTime(TimeUnit.SECONDS) + "s" +" ------\n");
+                    } else {
+                        //cplex.end();
+                        System.out.println("Não foi encontrada solução viável.");
+                        break;
+                        // return null;
+                    } 
+                }
+                
+                if(sliceIteration != 1){
+                    System.out.println("Pushing slice variables...");
+
+                    var currentAislesSize = choosenAisleIndexes.size();
+
+                    for(int a = currentAislesSize ; a < aisles.size() ; a++){
+                        choosenAisleIndexes.add(AisleItemsCount.get(a).second);
+                        inverseChoosenAisleIndexes[AisleItemsCount.get(a).second] = a;
+                        aisvar.add(cplex.numVar(0, 1, IloNumVarType.Bool));
+                    }
+
+                    pushAisleItems(AisleItems, choosenAisleIndexes.subList(currentAislesSize, choosenAisleIndexes.size()));
+
+                    cplex.remove(sumAislesConstraint);
+
+                    for(var itemConstraint: itensConstraints){
+                        cplex.remove(itemConstraint);
+                    }
+
+                    cplex.remove(objective);
+                }
             }
-            
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt", true))) {
                 writer.write("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus()+ " Tempo gasto: " + stopWatch.getTime(TimeUnit.SECONDS) + "s" + "iterations" + iterr+" order size "+ orders.size() + " aisle size " +aisles.size()+" ------\n");
