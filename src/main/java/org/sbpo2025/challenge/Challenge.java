@@ -119,7 +119,7 @@ public class Challenge {
 
         Challenge challenge = new Challenge();
         challenge.readInput(args[0]);
-        var challengeSolver = new ChallengeSolver(
+        var challengeSolver = new SliceChallengeSolver(
                 challenge.orders, challenge.aisles, challenge.nItems, challenge.waveSizeLB, challenge.waveSizeUB);
         ChallengeSolution challengeSolution = challengeSolver.solve(stopWatch);
 
