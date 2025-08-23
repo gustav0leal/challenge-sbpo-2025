@@ -28,12 +28,23 @@ class Pair<T, K> {
     }
 }
 
+class CompressedOrders {
+    public Map<Integer, Integer> order;
+    public List<Integer> originalOrderIndexes = new ArrayList<>();
+
+    public CompressedOrders(Map<Integer, Integer> order, List<Integer> originalOrderIndexes){
+        this.order = order;
+        this.originalOrderIndexes = originalOrderIndexes;
+    }
+}
+
 public class SliceChallengeSolver {
     private final long MAX_RUNTIME = 600000; // milliseconds; 10 minutes
     private final long RUNTIME = 600; // seconds; 10 minutes
     private final long BIN_ITER = 20; 
 
     protected List<Map<Integer, Integer>> orders;
+    private List<CompressedOrders> compressedOrders;
     protected List<Map<Integer, Integer>> aisles;
     protected int nItems;
     protected int waveSizeLB;
@@ -56,7 +67,75 @@ public class SliceChallengeSolver {
         }
     }
 
+    private void createCompressedOrder(){
+        this.compressedOrders = new ArrayList<>();
+        List<List<Integer>> oneOrdersPerItem = new ArrayList<>();
+
+        for (int i = 0; i < nItems; i++) {
+            oneOrdersPerItem.add(new ArrayList<>()); 
+        }
+
+        for(int o = 0 ; o < orders.size() ; o++){
+            int totalItens = 0;
+            int itemType = -1;
+
+            for (Map.Entry<Integer, Integer> entry : orders.get(o).entrySet()) {
+                totalItens += entry.getValue();
+                itemType = entry.getKey();
+
+                if(totalItens > 1){
+                    break;
+                }
+            }
+
+            if(totalItens == 1){
+                oneOrdersPerItem.get(itemType).add(o);
+            }else{
+                var orderIndex = new ArrayList<Integer>();
+                orderIndex.add(o);
+
+                compressedOrders.add(new CompressedOrders(orders.get(o), orderIndex));
+            }
+        }
+
+        for(int i = 0 ; i < nItems ; i++){
+            if(oneOrdersPerItem.get(i).size() > 0){
+                int total = oneOrdersPerItem.get(i).size();
+                int pt = 1;
+
+                while(total >= pt){
+                    var countItem = new HashMap<Integer, Integer>();
+                    countItem.put(i, pt);
+                    
+                    var indexes = new ArrayList<Integer>();
+
+                    for(int k = 0 ; k < pt ; k++){
+                        indexes.add(oneOrdersPerItem.get(i).getLast());
+                        oneOrdersPerItem.get(i).removeLast();
+                    }
+
+                    compressedOrders.add(new CompressedOrders(countItem, indexes));
+                    
+                    total -= pt;
+                    pt = pt * 2;
+                }
+
+                if(total > 0){
+                    var countItem = new HashMap<Integer, Integer>();
+                    countItem.put(i, total);
+
+                    compressedOrders.add(new CompressedOrders(countItem, oneOrdersPerItem.get(i)));
+                }
+            }
+        }
+
+        System.out.println("Original order size = " + orders.size());
+        System.out.println("Compressed order size = " + compressedOrders.size());
+    }
+
     public ChallengeSolution solve(StopWatch stopWatch) {
+        createCompressedOrder();
+
         double firstRunAislesPercentage = 0.11;
         Map<Integer, Integer>[] OrderItems = new HashMap[nItems];
         Map<Integer, Integer>[] AisleItems = new HashMap[nItems];
@@ -68,7 +147,7 @@ public class SliceChallengeSolver {
 
             for (Map.Entry<Integer, Integer> entry : aisles.get(a).entrySet()) {
                 if(entry.getValue() >= 1){ // Talvez usar a média da quantidade de itens por pedido...
-                    aisleAvgItemsCount[a]++;
+                    aisleAvgItemsCount[a]++; // deixei incompleto, isso aqui não tá fazendo nada por enquanto, tem o mesmo efeito de aisles.get(a).size()
                 }
             }
 
@@ -91,8 +170,8 @@ public class SliceChallengeSolver {
             OrderItems[i] = new HashMap<>();
             AisleItems[i] = new HashMap<>();
         }
-        for (int i = 0; i < orders.size(); i++) {
-            for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
+        for (int i = 0; i < compressedOrders.size(); i++) {
+            for (Map.Entry<Integer, Integer> entry : compressedOrders.get(i).order.entrySet()) {
                 // System.out.println(entry.getKey()+ " " + nItems);
                 OrderItems[entry.getKey()].put(i,entry.getValue());
             }
@@ -125,12 +204,12 @@ public class SliceChallengeSolver {
             // cplex.setParam(IloCplex.IntParam.MIP.Strategy.Dive, 3);
             // cplex.setParam(IloCplex.IntParam.MIP.Limits.StrongIt, 10); 
             // cplex.setParam(IloCplex.IntParam.MIP.Strategy.Branch, 3);
-            IloNumVar [] ordvar = cplex.numVarArray(orders.size(), 0, 1, IloNumVarType.Bool);
+            IloNumVar [] ordvar = cplex.numVarArray(compressedOrders.size(), 0, 1, IloNumVarType.Bool);
             var aisvar = new ArrayList<>(Arrays.asList(cplex.numVarArray(choosenAisleIndexes.size(), 0, 1, IloNumVarType.Bool)));
             IloLinearNumExpr sumorders = cplex.linearNumExpr();
 
-            for (int i = 0; i < orders.size(); i++) {
-                for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
+            for (int i = 0; i < compressedOrders.size(); i++) {
+                for (Map.Entry<Integer, Integer> entry : compressedOrders.get(i).order.entrySet()) {
                     sumorders.addTerm(entry.getValue(), ordvar[i]);
                 }
             }
@@ -139,8 +218,10 @@ public class SliceChallengeSolver {
             cplex.addLe(sumorders, waveSizeUB);
 
             cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1 );
+
+            int totalSliceIterations = 3;
             
-            for(int sliceIteration = 0 ; sliceIteration < 3 ; sliceIteration++){
+            for(int sliceIteration = 0 ; sliceIteration < totalSliceIterations ; sliceIteration++){
                 IloLinearNumExpr sumaisles = cplex.linearNumExpr();
 
                 for (int i = 0; i < aisvar.size(); i++) {
@@ -201,8 +282,8 @@ public class SliceChallengeSolver {
                             // cplex.setParam(IloCplex.IntParam.RootAlg, IloCplex.Algorithm.Dual);
                         }
                         objetivo = cplex.linearNumExpr();
-                        for (int i = 0; i < orders.size(); i++) {
-                            for (Map.Entry<Integer, Integer> entry : orders.get(i).entrySet()) {
+                        for (int i = 0; i < compressedOrders.size(); i++) {
+                            for (Map.Entry<Integer, Integer> entry : compressedOrders.get(i).order.entrySet()) {
                                 objetivo.addTerm(entry.getValue(), ordvar[i]);
                             }
                         }
@@ -232,7 +313,9 @@ public class SliceChallengeSolver {
                         l = l + cplex.getObjValue()/tot;
                         if(Math.abs(cplex.getObjValue()) < epsilon){
                             mark = true;
-                            break;
+                            if(cplex.getStatus() == IloCplex.Status.Optimal || (sliceIteration != totalSliceIterations - 1)){
+                                break;
+                            }
                         }
                         // if(Math.abs(cplex.getObjValue()) > epsilon)
                         // System.out.println(cplex.getObjValue());
@@ -249,13 +332,13 @@ public class SliceChallengeSolver {
                     break;
                 }
 
-                if(sliceIteration != 2){
+                if(sliceIteration != totalSliceIterations - 1){
                     System.out.println("Pushing slice variables...");
                     System.out.println("rebuilding starting remaining time: " + getRemainingTime(stopWatch));
 
                     var currentAislesSize = choosenAisleIndexes.size();
                     int lastIndex = sliceIteration == 0 ?
-                        Math.min(currentAislesSize + (int) firstRunAislesPercentage * aisles.size(), aisles.size()) : aisles.size();
+                        Math.min(currentAislesSize + (int) (firstRunAislesPercentage * aisles.size()), aisles.size()) : aisles.size();
 
                     for(int a = currentAislesSize ; a < lastIndex ; a++){
                         choosenAisleIndexes.add(AisleItemsCount.get(a).second);
@@ -272,8 +355,9 @@ public class SliceChallengeSolver {
                     }
 
                     cplex.remove(objective);
+                    // cplex.setParam(IloCplex.IntParam.RootAlgorithm, IloCplex.Algorithm.Dual);
 
-                    cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.001 );
+                    // cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.001 );
                 }
             }
 
@@ -285,9 +369,12 @@ public class SliceChallengeSolver {
 
             orderset.clear();
             aisleset.clear();
-            for (int i = 0; i < orders.size(); i++) {
-                if(cplex.getValue(ordvar[i]) > 0.5)
-                    orderset.add(i);
+            for (int i = 0; i < compressedOrders.size(); i++) {
+                if(cplex.getValue(ordvar[i]) > 0.5){
+                    for(int k: compressedOrders.get(i).originalOrderIndexes){
+                        orderset.add(k);
+                    }
+                }
             }
             for (int i = 0; i < aisvar.size(); i++) {
                 if(cplex.getValue(aisvar.get(i)) > + 0.5)
