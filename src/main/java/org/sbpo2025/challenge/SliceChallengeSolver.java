@@ -45,6 +45,7 @@ public class SliceChallengeSolver {
 
     protected List<Map<Integer, Integer>> orders;
     private List<CompressedOrders> compressedOrders;
+    private boolean compressOrders = false;
     protected List<Map<Integer, Integer>> aisles;
     protected int nItems;
     protected int waveSizeLB;
@@ -88,7 +89,7 @@ public class SliceChallengeSolver {
                 }
             }
 
-            if(totalItens == 1){
+            if(totalItens == 1 && compressOrders){
                 oneOrdersPerItem.get(itemType).add(o);
             }else{
                 var orderIndex = new ArrayList<Integer>();
