@@ -192,7 +192,7 @@ public class SliceChallengeSolver {
             IloCplex cplex = new IloCplex();
             cplex.setOut(null);
             cplex.setWarning(null);
-            cplex.setParam(IloCplex.IntParam.MIP.Display, 2);
+            // cplex.setParam(IloCplex.IntParam.MIP.Display, 2);
             // cplex.setParam(IloCplex.IntParam.MIP.Interval, 0);
             // cplex.setParam(IloCplex.IntParam.MIP.Limits.TreeMemory, 0);
 
@@ -218,9 +218,7 @@ public class SliceChallengeSolver {
 
             cplex.addLe(sumorders, waveSizeUB);
 
-            cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1 );
-
-            int totalSliceIterations = 3;
+            int totalSliceIterations = 2;
             
             for(int sliceIteration = 0 ; sliceIteration < totalSliceIterations ; sliceIteration++){
                 IloLinearNumExpr sumaisles = cplex.linearNumExpr();
@@ -254,6 +252,9 @@ public class SliceChallengeSolver {
                 // // Limitar o número de threads do CPLEX
                 // cplex.setParam(IloCplex.IntParam.Threads, maxThreads);
                 IloLinearNumExpr objetivo = cplex.linearNumExpr();
+
+                cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1 );
+
                 for(int c = 0; c < BIN_ITER; c++)
                 {
                     if(getRemainingTime(stopWatch) <= 20)
@@ -264,6 +265,7 @@ public class SliceChallengeSolver {
                     {
                         cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.0);
                     }
+                    
                     // if(c != 0){
                         // System.out.println("ALO7 "+cplex.getObjValue());
                     // }
@@ -338,7 +340,7 @@ public class SliceChallengeSolver {
                     System.out.println("rebuilding starting remaining time: " + getRemainingTime(stopWatch));
 
                     var currentAislesSize = choosenAisleIndexes.size();
-                    int lastIndex = sliceIteration == 0 ?
+                    int lastIndex = sliceIteration != (totalSliceIterations - 2) ?
                         Math.min(currentAislesSize + (int) (firstRunAislesPercentage * aisles.size()), aisles.size()) : aisles.size();
 
                     for(int a = currentAislesSize ; a < lastIndex ; a++){
