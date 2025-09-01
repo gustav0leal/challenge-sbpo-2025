@@ -22,6 +22,7 @@ public class ChallengeSolver {
     private static int BIN_ITER = 7; 
     private final long LAG_ITER = 2000; 
 
+    private SliceChallengeSolver sliceSolver;
     protected List<Map<Integer, Integer>> orders;
     protected List<Map<Integer, Integer>> aisles;
     protected int nItems;
@@ -50,9 +51,23 @@ public class ChallengeSolver {
         this.nItems = nItems;
         this.waveSizeLB = waveSizeLB;
         this.waveSizeUB = waveSizeUB;
+
+        this.sliceSolver = new SliceChallengeSolver(orders, aisles, nItems, waveSizeLB, waveSizeUB);
     }
 
     public ChallengeSolution solve(StopWatch stopWatch) {
+        long totalItens = 0;
+
+        for(int o = 0 ; o < orders.size() ; o++){
+            for(var entry: orders.get(o).entrySet()){
+                totalItens += entry.getValue();
+            }
+        }
+
+        if(totalItens < 2 * orders.size()){
+            return sliceSolver.solve(stopWatch);
+        }
+
        // Build item-oriented maps
         Map<Integer,Integer>[] OrderItems = new HashMap[nItems];
         Map<Integer,Integer>[] AisleItems = new HashMap[nItems];

@@ -130,8 +130,8 @@ public class SliceChallengeSolver {
             }
         }
 
-        System.out.println("Original order size = " + orders.size());
-        System.out.println("Compressed order size = " + compressedOrders.size());
+        //System.out.println("Original order size = " + orders.size());
+        //System.out.println("Compressed order size = " + compressedOrders.size());
     }
 
     public ChallengeSolution solve(StopWatch stopWatch) {
@@ -141,6 +141,20 @@ public class SliceChallengeSolver {
         Map<Integer, Integer>[] OrderItems = new HashMap[nItems];
         Map<Integer, Integer>[] AisleItems = new HashMap[nItems];
         List<Pair< Integer, Integer > > AisleItemsCount = new ArrayList<>();
+
+        long totalItens = 0;
+
+        for(int o = 0 ; o < orders.size() ; o++){
+            for(var entry: orders.get(o).entrySet()){
+                totalItens += entry.getValue();
+            }
+        }
+
+        if(totalItens >= 2 * orders.size()){
+            firstRunAislesPercentage = 1.0;
+            //System.out.println("Adjusting do 0.80");
+        }
+
         int aisleAvgItemsCount[] = new int[aisles.size()];
         
         for(int a = 0 ; a < aisles.size() ; a++){
@@ -242,7 +256,7 @@ public class SliceChallengeSolver {
                     itensConstraints.add(cplex.addLe(ordersum, aislesum)); // remove
                 }
 
-                System.out.println("builded starting remaining time: " + getRemainingTime(stopWatch));
+                //System.out.println("builded starting remaining time: " + getRemainingTime(stopWatch));
 
                 double startTime = cplex.getCplexTime();
                 // cplex.setParam(IloCplex.DoubleParam.WorkMem, 14000); // limitar uso de memoria pra 14 GB
@@ -271,10 +285,10 @@ public class SliceChallengeSolver {
                     // }
                     // double mid = l;
                     if(c == BIN_ITER-1 || getRemainingTime(stopWatch) <= 150){
-                        System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
+                        //System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
                     }
                     else{   
-                        System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)/(2)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
+                        //System.out.println("\n -------Execução " + c+" l "+l+" Tempo Disponivel "+(getRemainingTime(stopWatch)-10)/(2)+" Real time "+getRemainingTime(stopWatch)+" ------\n");
                     }
 
                     if(c == 0 || Math.abs(cplex.getObjValue()) > epsilon)
@@ -299,7 +313,7 @@ public class SliceChallengeSolver {
                     }
 
                     // TIRANDO TLE PRA BRUTAR
-                    if(sliceIteration != 0 && (c == BIN_ITER-1 || getRemainingTime(stopWatch) <= 150)){
+                    if(sliceIteration != 0 || (c == BIN_ITER-1 || getRemainingTime(stopWatch) <= 150)){
                         cplex.setParam(IloCplex.DoubleParam.TimeLimit, (getRemainingTime(stopWatch)-10));
                     }
                     else{
@@ -307,7 +321,7 @@ public class SliceChallengeSolver {
                     }
 
                     if (cplex.solve()) {
-                        System.out.println("Valor ótimo = " + cplex.getObjValue());
+                       // System.out.println("Valor ótimo = " + cplex.getObjValue());
                         int tot = 0;
                         for (int i = 0; i < aisvar.size(); i++) {
                             if(cplex.getValue(aisvar.get(i)) > 0.5)
@@ -322,10 +336,10 @@ public class SliceChallengeSolver {
                         }
                         // if(Math.abs(cplex.getObjValue()) > epsilon)
                         // System.out.println(cplex.getObjValue());
-                        System.out.println("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus()+ " Tempo gasto: " + stopWatch.getTime(TimeUnit.SECONDS) + "s" +" ------\n");
+                        //System.out.println("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus()+ " Tempo gasto: " + stopWatch.getTime(TimeUnit.SECONDS) + "s" +" ------\n");
                     } else {
                         //cplex.end();
-                        System.out.println("Não foi encontrada solução viável.");
+                        //System.out.println("Não foi encontrada solução viável.");
                         break;
                         // return null;
                     } 
@@ -336,8 +350,8 @@ public class SliceChallengeSolver {
                 }
 
                 if(sliceIteration != totalSliceIterations - 1){
-                    System.out.println("Pushing slice variables...");
-                    System.out.println("rebuilding starting remaining time: " + getRemainingTime(stopWatch));
+                    //System.out.println("Pushing slice variables...");
+                    //System.out.println("rebuilding starting remaining time: " + getRemainingTime(stopWatch));
 
                     var currentAislesSize = choosenAisleIndexes.size();
                     int lastIndex = sliceIteration != (totalSliceIterations - 2) ?
@@ -364,11 +378,11 @@ public class SliceChallengeSolver {
                 }
             }
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt", true))) {
-                writer.write("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus()+ " Tempo gasto: " + stopWatch.getTime(TimeUnit.SECONDS) + "s" + "iterations" + iterr+" order size "+ orders.size() + " aisle size " +aisles.size()+" ------\n");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            // try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt", true))) {
+                // writer.write("\n -------Resultado: l "+l+" diff "+cplex.getObjValue()+ " GAP "+cplex.getMIPRelativeGap() + " Otima? "+cplex.getStatus()+ " Tempo gasto: " + stopWatch.getTime(TimeUnit.SECONDS) + "s" + "iterations" + iterr+" order size "+ orders.size() + " aisle size " +aisles.size()+" ------\n");
+            //} catch (IOException e) {
+              //  e.printStackTrace();
+            //}
 
             orderset.clear();
             aisleset.clear();
