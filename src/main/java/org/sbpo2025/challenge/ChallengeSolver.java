@@ -144,7 +144,7 @@ public class ChallengeSolver {
                 cplex.addLe(ordersum,aislesum);
             }
             double startTime = cplex.getCplexTime();
-            cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.05);
+            cplex.setParam(IloCplex.Param.MIP.Tolerances.MIPGap, 0.1);
             // cplex.setParam(IloCplex.DoubleParam.WorkMem, 14000); // limitar uso de memoria pra 14 GB
             // // Descobrir o número de núcleos da CPU
             // int totalCores = Runtime.getRuntime().availableProcessors();
